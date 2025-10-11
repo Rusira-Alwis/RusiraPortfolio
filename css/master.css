@@ -1,22 +1,96 @@
-body {
+/* ============================================================
+   PORTFOLIO WEBSITE MASTER STYLESHEET (SKELETON VERSION)
+   Author: Rusira Alwis
+   Purpose: Fully customisable CSS base for your portfolio
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   GLOBAL VARIABLES — Edit these to change theme colours
+   ------------------------------------------------------------ */
+:root {
+  /* DARK THEME WITH BLUE HIGHLIGHTS */
+  --color-primary: #137ae1;         /* Main accent (bright blue) */
+  --color-secondary: #0166d2;       /* Secondary blue (hover, active) */
+  --color-bg: #0f0f10;              /* Main page background */
+  --color-dark: #1a1b1e;            /* Card or section background */
+  --color-light: #f4f4f4;           /* Text or icon highlights */
+  --color-text: #e0e0e0;            /* Normal readable text */
+  --color-muted: #888;              /* Faint text (captions, small text) */
+
+  /* Optional gradient background */
+  --gradient-head: linear-gradient(to bottom left , #0f0f10, #1a1b1e);
+  --gradient-main: linear-gradient(135deg, #0f0f10, #1a1b1e);
+
+
+  /* Typography */
+  --font-body: 'Segoe UI', sans-serif;
+  /* --font-heading: 'Poppins', sans-serif; */
+
+  /* Layout */
+  --spacing-section: 3rem;
+  --max-width: 1100px;
+}
+
+/* ------------------------------------------------------------
+   GLOBAL RESET & BASE STYLES
+   ------------------------------------------------------------ */
+* {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f3f3f3;
-  color: #333;
+  padding: 0;
+  box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Optional global gradient background */
+ /* body {
+    background: var(--gradient-main);
+    color: var(--color-light);
+ } */
+
+/* Links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Containers */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ------------------------------------------------------------
+   HEADER & NAVIGATION
+   ------------------------------------------------------------ */
 header {
-  background-color: #0058ff;
-  color: white;
-  padding: 1rem 0;
+  background: var(--gradient-head);
 }
 
-.navbar .container {
+.navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
-  margin: auto;
+}
+
+.logo {
+  color: #015ab8;
+  font-weight: bold;
+  font-size: 1.5rem;
+  /* text-transform: uppercase; */
+  /* letter-spacing: 2px; */
 }
 
 .nav-links {
@@ -26,28 +100,103 @@ header {
 }
 
 .nav-links a {
-  color: white;
-  text-decoration: none;
+  color: var(--color-light);
+  font-weight: 500;
 }
 
+.nav-links a:hover {
+  color: var(--color-secondary);
+  /* text-decoration: underline; */
+}
+
+/* ------------------------------------------------------------
+   HERO SECTION (intro, name, tagline, button)
+   ------------------------------------------------------------ */
 .hero {
   text-align: center;
   padding: 4rem 1rem;
-  background: linear-gradient(to bottom right, #0058ff, #0096ff);
-  color: white;
+  background: var(--color-dark);
+  color: var(--color-light);
+  /* background-image: url('../images/hero-bg.jpg'); */
+  /* background-size: cover;
+     background-position: center; */
 }
 
+.hero h1 {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+  /* font-family: var(--font-heading); */
+}
+
+.hero p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--color-light);
+  /* font-style: italic; */
+}
+
+.hero button {
+  background-color: var(--color-dark);
+  color: var(--color-primary);
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.hero button:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  transform: scale(1.05);
+}
+
+
+/* Profile photo */
 .profile-pic {
   width: 120px;
   height: 120px;
-  border-radius: 50%;
+  border: 1px solid var(--color-light);
   margin-bottom: 1rem;
+  /* box-shadow: 0 0 10px rgba(255,255,255,0.5); */
 }
 
-section {
-  padding: 3rem 1rem;
-  max-width: 1000px;
+
+/* ------------------------------------------------------------
+    ABOUT SECTION
+   ------------------------------------------------------------ */
+#about {
+  padding: var(--spacing-section) 1rem;
+  background: var(--color-bg);
+  color: var(--color-light);
+  text-align: center;
+}
+
+#about h2 {
+  margin-bottom: 1rem;
+  /* font-family: var(--font-heading); */
+}
+
+#about p {
+  max-width: 700px;
   margin: auto;
+  /* font-size: 1.1rem; */
+  /* line-height: 1.8; */
+}
+
+/* ------------------------------------------------------------
+    PROJECTS SECTION
+   ------------------------------------------------------------ */
+#projects {
+  padding: var(--spacing-section) 1rem;
+  background-color: var(--color-bg);
+  color: var(--color-light);
+}
+
+#projects h2 {
+  text-align: center;
+  margin-bottom: 2rem;
 }
 
 .project-grid {
@@ -57,15 +206,43 @@ section {
 }
 
 .project-card {
-  background: white;
-  padding: 1rem;
+  background: var(--color-dark);
+  color: var(--color-text);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  transition: transform 0.3s;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  padding: 1rem;
+  text-align: center;
 }
 
 .project-card:hover {
   transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.project-card img {
+  width: 100%;
+  margin-bottom: 0.5rem;
+  /* object-fit: cover; */
+}
+
+.project-card h3 {
+  margin-top: 0.5rem;
+  /* color: var(--color-primary); */
+}
+
+/* ------------------------------------------------------------
+   CONTACT SECTION
+   ------------------------------------------------------------ */
+#contact {
+  padding: var(--spacing-section) 1rem;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  text-align: center;
+}
+
+#contact h2 {
+  margin-bottom: 1rem;
 }
 
 form {
@@ -76,24 +253,55 @@ form {
   margin: auto;
 }
 
-form input, form textarea {
+form input,
+form textarea {
   padding: 0.8rem;
-  border: 1px solid #ccc;
+  background-color: #cccccc;
+  border: 1px solid #000000;
   border-radius: 4px;
+  /* background-color: #fafafa; */
 }
 
 form button {
-  background-color: #0058ff;
-  color: white;
+  background-color: var(--color-secondary);
+  color: var(--color-light);
   border: none;
   padding: 0.8rem;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
 }
 
+form button:hover {
+  background-color: var(--color-primary);
+}
+
+/* ------------------------------------------------------------
+    FOOTER
+   ------------------------------------------------------------ */
 footer {
-  background-color: #222;
-  color: white;
+  background-color: #000000;
+  color: var(--color-muted);
   text-align: center;
   padding: 1rem 0;
+  font-size: 0.9rem;
+  /* border-top: 3px solid var(--color-primary); */
+}
+
+/* ------------------------------------------------------------
+    RESPONSIVE DESIGN
+   ------------------------------------------------------------ */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero {
+    padding: 3rem 1rem;
+  }
 }
