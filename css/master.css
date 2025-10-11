@@ -18,7 +18,6 @@
   --color-muted: #888;              /* Faint text (captions, small text) */
 
   /* Optional gradient background */
-  --gradient-head: linear-gradient(to bottom left , #0f0f10, #1a1b1e);
   --gradient-main: linear-gradient(135deg, #0f0f10, #1a1b1e);
 
 
@@ -44,39 +43,34 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  background-color: var(--color-bg);
-  color: var(--color-text);
+/* moving gradient background */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* keep behind everything */
+  background: linear-gradient(-45deg, #00122c, #001d3d, #004a8e, #001330);
+  background-size: 400% 400%;
+  animation: gradientMove 60s ease infinite;
+  opacity: 1; /* subtle and soft */
 }
 
-/* Optional global gradient background */
- /* body {
-    background: var(--gradient-main);
-    color: var(--color-light);
- } */
-
-/* Links */
-a {
-  color: var(--color-primary);
-  text-decoration: none;
+/* Animated gradient movement */
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-a:hover {
-  text-decoration: underline;
-}
-
-/* Containers */
-.container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 1rem;
-}
 
 /* ------------------------------------------------------------
    HEADER & NAVIGATION
    ------------------------------------------------------------ */
 header {
-  background: var(--gradient-head);
+  background: linear-gradient(to bottom , #002788, 30%, transparent);
 }
 
 .navbar {
@@ -115,7 +109,6 @@ header {
 .hero {
   text-align: center;
   padding: 4rem 1rem;
-  background: var(--color-dark);
   color: var(--color-light);
   /* background-image: url('../images/hero-bg.jpg'); */
   /* background-size: cover;
@@ -136,7 +129,7 @@ header {
 }
 
 .hero button {
-  background-color: var(--color-dark);
+  background-color: transparent;
   color: var(--color-primary);
   border: none;
   padding: 0.8rem 1.5rem;
@@ -152,12 +145,37 @@ header {
   transform: scale(1.05);
 }
 
+/* make button a positioning context */
+#learnMoreBtn {
+  position: relative;
+  overflow: visible;
+  z-index: 10;
+}
+
+/* ✨ Sparkle style */
+.sparkle {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: radial-gradient(circle, #fff, rgba(255,255,255,0));
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkleFade 1.2s ease-out forwards;
+  box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.6);
+  z-index: 999; /* ensure it’s above the button */
+}
+
+@keyframes sparkleFade {
+  0% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(2); }
+}
+
+
+
 
 /* Profile photo */
 .profile-pic {
-  width: 120px;
-  height: 120px;
-  border: 1px solid var(--color-light);
+  width: 7.5%;
   margin-bottom: 1rem;
   /* box-shadow: 0 0 10px rgba(255,255,255,0.5); */
 }
@@ -168,10 +186,11 @@ header {
    ------------------------------------------------------------ */
 #about {
   padding: var(--spacing-section) 1rem;
-  background: var(--color-bg);
+  background: linear-gradient(to bottom, transparent, 50%, var(--color-bg));
   color: var(--color-light);
   text-align: center;
 }
+
 
 #about h2 {
   margin-bottom: 1rem;
@@ -186,7 +205,7 @@ header {
 }
 
 /* ------------------------------------------------------------
-    PROJECTS SECTION
+    PROJECTS SECTION (2x2 GRID)
    ------------------------------------------------------------ */
 #projects {
   padding: var(--spacing-section) 1rem;
@@ -201,8 +220,9 @@ header {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(2,1fr); /* always 2 columns */
   gap: 1.5rem;
+  justify-items: center; /* center items horizontally */
 }
 
 .project-card {
@@ -213,6 +233,9 @@ header {
   transition: transform 0.3s, box-shadow 0.3s;
   padding: 1rem;
   text-align: center;
+
+  width: 100%;        /* card fills the grid cell */
+  max-width: 600px;   /* ensures all cards are same width */
 }
 
 .project-card:hover {
@@ -221,15 +244,18 @@ header {
 }
 
 .project-card img {
-  width: 100%;
+  width: 20%;
   margin-bottom: 0.5rem;
-  /* object-fit: cover; */
+  object-fit: cover; 
 }
 
 .project-card h3 {
+  color: var(--color-primary);
+  font-size: 1.2rem;
   margin-top: 0.5rem;
-  /* color: var(--color-primary); */
 }
+
+
 
 /* ------------------------------------------------------------
    CONTACT SECTION
@@ -276,6 +302,14 @@ form button:hover {
   background-color: var(--color-primary);
 }
 
+.magnet {
+  display: inline-block;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+
+
 /* ------------------------------------------------------------
     FOOTER
    ------------------------------------------------------------ */
@@ -289,8 +323,16 @@ footer {
 }
 
 /* ------------------------------------------------------------
-    RESPONSIVE DESIGN
+    RESPONSIVE/ACCESSIBILITY DESIGN
    ------------------------------------------------------------ */
+
+:focus {
+  outline-color:  rgba(255, 0, 0, 0.6);
+  outline-style: solid;
+  outline-width: 3px;
+  outline-offset: 2px;
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
