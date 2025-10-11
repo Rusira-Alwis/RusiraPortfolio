@@ -49,7 +49,7 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="container">
-      <img src="images/profile.png" alt="Profile photo" class="profile-pic">
+      <img src="images/profile.png" tabindex="0" alt="Profile photo" class="profile-pic">
       <h1 tabindex="0">Rusira Alwis</h1>
       <p tabindex="0">Student | Engineer | Developer</p>
       <button id="learnMoreBtn">Learn More</button>
@@ -59,8 +59,8 @@
   <!-- About Section -->
   <section id="about">
     <div class="container">
-      <h2>About Me</h2>
-      <p>
+      <h2 tabindex="0">About Me</h2>
+      <p tabindex="0">
         I’m a passionate aspiring engineer with a hunger for producing fun and inspired projects.<br>
         I enjoy bringing ideas to life and showcasing them on my website in the future.
         This website is constructed to support most potential users (WCAG 2.2) as I believe it is essential to practice inclusivity and ethics.
@@ -107,8 +107,8 @@
 
   <!-- Contact Section -->
   <section id="contact">
-    <div class="container" tabindex="0">
-      <h2>Contact Me</h2>
+    <div class="container">
+      <h2 tabindex="0" aria-label="Contact Me section with fillable name, email, and message features">Contact Me</h2>
       <form id="contact-form">
         <input type="text" id="name" name="from_name" placeholder="Your Name" required>
         <input type="email" id="email" name="reply_to" placeholder="Your Email" required>
