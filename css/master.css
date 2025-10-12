@@ -1,14 +1,13 @@
 /* ============================================================
    PORTFOLIO WEBSITE MASTER STYLESHEET (SKELETON VERSION)
    Author: Rusira Alwis
-   Purpose: Fully customisable CSS base for your portfolio
    ============================================================ */
 
 /* ------------------------------------------------------------
-   GLOBAL VARIABLES — Edit these to change theme colours
+   GLOBAL VARIABLES
    ------------------------------------------------------------ */
 :root {
-  /* DARK THEME WITH BLUE HIGHLIGHTS */
+  /* color palette */
   --color-primary: #137ae1;         /* Main accent (bright blue) */
   --color-secondary: #0166d2;       /* Secondary blue (hover, active) */
   --color-bg: #0f0f10;              /* Main page background */
@@ -169,6 +168,8 @@ header {
   0% { opacity: 1; transform: scale(1); }
   100% { opacity: 0; transform: scale(2); }
 }
+
+
 
 
 /* Profile photo */
