@@ -77,7 +77,6 @@ learnMoreBtn.addEventListener("mousemove", (e) => {
 // 🧲 Magnetic Effect — only in contact/footer
 const magnets = document.querySelectorAll(".magnet");
 const contactSection = document.getElementById("contact");
-const footer = document.querySelector("footer");
 
 function handleMagnet(e, magnet) {
   const rect = magnet.getBoundingClientRect();

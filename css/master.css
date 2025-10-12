@@ -21,11 +21,11 @@
 
 
   /* Typography */
-  --font-body: 'Segoe UI', sans-serif;
+  --font-body: 'Georgia', serif;
   /* --font-heading: 'Poppins', sans-serif; */
 
   /* Layout */
-  --spacing-section: 3rem;
+  --spacing-section: 6rem;
   --max-width: 1100px;
 }
 
@@ -50,18 +50,18 @@ body::before {
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: -1; /* keep behind everything */
+  z-index: -2; /* keep behind everything */
   background: linear-gradient(-45deg, #00122c, #001d3d, #004a8e, #001330);
-  background-size: 400% 400%;
-  animation: gradientMove 60s ease infinite;
+  background-size: 200% 200%;
+  animation: gradientMove 30s ease infinite;
   opacity: 1; /* subtle and soft */
 }
 
 /* Animated gradient movement */
 @keyframes gradientMove {
-  0% { background-position: 0% 50%; }
+  0% { background-position: 0% 10%; }
   50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  100% { background-position: 0% 10%; }
 }
 
 
@@ -69,7 +69,7 @@ body::before {
    HEADER & NAVIGATION
    ------------------------------------------------------------ */
 header {
-  background: linear-gradient(to bottom , #002788, 30%, transparent);
+  background: linear-gradient(to bottom , #00263f, 30%, transparent);
 }
 
 .navbar {
@@ -93,20 +93,33 @@ header {
 }
 
 .nav-links a {
-  color: var(--color-light);
-  font-weight: 500;
+  display: inline-block;
+  background-color: transparent;
+  color: var(--color-primary);
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s, transform 0.3s;
 }
 
-.nav-links a:hover {
-  color: var(--color-secondary);
-  /* text-decoration: underline; */
+.nav-links a:hover,
+.nav-links a:focus {
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  transform: scale(1.05);
+  outline: 2;
 }
+
 
 /* ------------------------------------------------------------
    HERO SECTION (intro, name, tagline, button)
    ------------------------------------------------------------ */
 .hero {
   text-align: center;
+  font-family: var(--font-body);
   padding: 4rem 1rem;
   color: var(--color-light);
   /* background-image: url('../images/hero-bg.jpg'); */
@@ -129,6 +142,7 @@ header {
 
 .hero button {
   background-color: transparent;
+  font-family: 'Segue UI', sans-serif;
   color: var(--color-primary);
   border: none;
   padding: 0.8rem 1.5rem;
@@ -138,10 +152,13 @@ header {
   transition: background 0.3s, transform 0.3s;
 }
 
-.hero button:hover {
+.hero button:hover,
+.hero button:focus {
   background-color: var(--color-secondary);
+  font-family: 'Segue UI', sans-serif;
   color: var(--color-light);
   transform: scale(1.05);
+  outline: 2;
 }
 
 /* make button a positioning context */
@@ -156,16 +173,16 @@ header {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: radial-gradient(circle, #fff, rgba(255,255,255,0));
+  background: radial-gradient(circle, #74daff, rgba(255,255,255,0));
   border-radius: 50%;
   pointer-events: none;
-  animation: sparkleFade 1.2s ease-out forwards;
-  box-shadow: 0 0 2px 1px rgba(255, 255, 255, 0.6);
+  animation: sparkleFade 0.6s ease-out forwards;
+  box-shadow: 0 0 1px 1px rgba(130, 247, 255, 0.6);
   z-index: 999; /* ensure it’s above the button */
 }
 
 @keyframes sparkleFade {
-  0% { opacity: 1; transform: scale(1); }
+  0% { opacity: 0.9; transform: scale(1); }
   100% { opacity: 0; transform: scale(2); }
 }
 
@@ -185,6 +202,7 @@ header {
    ------------------------------------------------------------ */
 #about {
   padding: var(--spacing-section) 1rem;
+  font-family: var(--font-body);
   background: linear-gradient(to bottom, transparent, 50%, var(--color-bg));
   color: var(--color-light);
   text-align: center;
@@ -207,10 +225,54 @@ header {
     PROJECTS SECTION (2x2 GRID)
    ------------------------------------------------------------ */
 #projects {
-  padding: var(--spacing-section) 1rem;
+  position: relative;
   background-color: var(--color-bg);
   color: var(--color-light);
+  padding: 8rem;
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% calc(100% - 30px),
+    95% 100%,
+    90% calc(100% - 30px),
+    85% 100%,
+    80% calc(100% - 30px),
+    75% 100%,
+    70% calc(100% - 30px),
+    65% 100%,
+    60% calc(100% - 30px),
+    55% 100%,
+    50% calc(100% - 30px),
+    45% 100%,
+    40% calc(100% - 30px),
+    35% 100%,
+    30% calc(100% - 30px),
+    25% 100%,
+    20% calc(100% - 30px),
+    15% 100%,
+    10% calc(100% - 30px),
+    5% 100%,
+    0 calc(100% - 30px)
+  );
 }
+
+#projects {
+  position: relative;
+  background-color: var(--color-bg);
+  color: var(--color-light);
+  padding: var(--spacing-section) 4rem;
+  z-index: 1;
+}
+
+#contact {
+  position: relative;
+  background-color: var(--color-dark);
+  color: var(--color-light);
+  padding: var(--spacing-section) 2rem;
+  margin-top: -40px; /* overlaps under projects’ zigzag */
+  z-index: 0;
+}
+
 
 #projects h2 {
   text-align: center;
@@ -262,6 +324,7 @@ header {
 #contact {
   padding: var(--spacing-section) 1rem;
   background-color: var(--color-dark);
+  background-size: 200% 200%;
   color: var(--color-light);
   text-align: center;
 }
