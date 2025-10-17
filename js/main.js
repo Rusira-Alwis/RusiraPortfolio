@@ -103,3 +103,24 @@ function activateMagnet(area) {
 }
 
 activateMagnet(contactSection);
+
+const menuToggle = document.querySelector('.menu-toggle');
+const navMenu = document.querySelector('.nav-menu');
+const dropdownToggle = document.querySelector('.dropdown-toggle');
+const dropdown = document.querySelector('.dropdown');
+
+// Toggle main menu
+menuToggle.addEventListener('click', () => {
+  navMenu.classList.toggle('active');
+  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+  menuToggle.setAttribute('aria-expanded', !expanded);
+});
+
+// Toggle projects submenu
+dropdownToggle.addEventListener('click', (e) => {
+  e.preventDefault();
+  dropdown.classList.toggle('active');
+  const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
+  dropdownToggle.setAttribute('aria-expanded', !expanded);
+});
+

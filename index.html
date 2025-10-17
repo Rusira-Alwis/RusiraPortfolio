@@ -34,17 +34,28 @@
 
   <!-- Navigation -->
   <header>
-    <nav class="navbar">
-      <div class="container">
-        <h2 class="logo" tabindex="0" aria-label="Rusira Portfolio, About, Projects, Contact Me sections available">Portfolio</h2>
-        <ul class="nav-links">
-          <li><a href="#about">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+  <nav class="navbar">
+    <div class="container nav-container">
+      <h2 class="logo" tabindex="0">Portfolio</h2>
+
+      <!-- Hamburger button -->
+      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        ☰
+      </button>
+
+      <!-- Collapsible main menu -->
+      <ul class="nav-menu">
+        <li><a href="#about" tabindex="0">About</a></li>
+
+        <li><a href="#projects" tabindex="0">Projects</a></li>
+
+        <li><a href="#contact" tabindex="0">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+
 
   <!-- Hero Section -->
   <section class="hero">
@@ -132,13 +143,41 @@
 
   <!-- Cursor Glow Script -->
   <script>
-    const cursor = document.querySelector(".cursor");
+  const cursor = document.querySelector(".cursor");
 
+  // Only activate cursor on devices with mouse input
+  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
     window.addEventListener("mousemove", (e) => {
       cursor.style.left = e.pageX + "px";
       cursor.style.top = e.pageY + "px";
     });
-  </script>
+  } else {
+    cursor.style.display = "none"; // hide on mobile/touch
+  }
+</script>
+
+<script>
+  const menuToggle = document.querySelector('.menu-toggle');
+  const navLinks = document.querySelector('.nav-links');
+  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+  // Toggle main nav
+  menuToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+    menuToggle.setAttribute('aria-expanded', !expanded);
+  });
+
+  // Toggle dropdown on mobile
+  dropdownToggles.forEach(toggle => {
+    toggle.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) {
+        e.preventDefault();
+        toggle.parentElement.classList.toggle('active');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>

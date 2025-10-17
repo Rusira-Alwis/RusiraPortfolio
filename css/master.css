@@ -113,6 +113,96 @@ header {
   outline: 2;
 }
 
+/* --- NAVIGATION --- */
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+
+/* Hamburger (top right) */
+.menu-toggle {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  background: none;
+  border: none;
+  color: var(--color-light);
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 100;
+}
+
+/* Remove bullet points and padding */
+.nav-menu,
+.dropdown-menu {
+  list-style: none;
+  padding: 1;
+  margin: 0;
+}
+
+/* Nav menu base (hidden by default) */
+.nav-menu {
+  position: absolute;
+  top: 5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Visible state */
+.nav-menu.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Buttons like "Learn More" */
+.nav-menu a,
+.dropdown-toggle {
+  padding: 0.5rem 1rem;
+  color: var(--color-primary);
+  border: transparent;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  background: transparent;
+  transition: all 0.3s ease;
+  text-align: right;
+}
+
+.nav-menu a:hover,
+.dropdown-toggle:hover {
+  background-color: var(--color-secondary);
+  color: var(--color-light);
+  transform: scale(1.05);
+}
+
+/* Dropdown menu (hidden initially) */
+.dropdown-menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.4rem;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.dropdown.active .dropdown-menu {
+  max-height: 300px;
+}
+
+
 
 /* ------------------------------------------------------------
    HERO SECTION (intro, name, tagline, button)
@@ -201,13 +291,13 @@ header {
     ABOUT SECTION
    ------------------------------------------------------------ */
 #about {
-  padding: var(--spacing-section) 1rem;
+  padding: var(--spacing-section) 4rem;
   font-family: var(--font-body);
   background: linear-gradient(to bottom, transparent, 50%, var(--color-bg));
+  background-size: 150%;
   color: var(--color-light);
   text-align: center;
 }
-
 
 #about h2 {
   margin-bottom: 1rem;
@@ -220,6 +310,25 @@ header {
   /* font-size: 1.1rem; */
   /* line-height: 1.8; */
 }
+
+#about {
+  position: relative;
+  padding-bottom: 6rem; /* keep your normal spacing */
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+}
+
+/* Extend the background down a bit to hide the gap */
+#about::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* overlap into the next section slightly */
+  left: 0;
+  width: 100%;
+  height: 20px; /* how much extra background you want */
+  background: linear-gradient(to bottom, var(--color-bg), var(--color-bg));
+  z-index: 0;
+}
+
 
 /* ------------------------------------------------------------
     PROJECTS SECTION (2x2 GRID)
@@ -261,7 +370,6 @@ header {
   position: relative;
   background-color: var(--color-bg);
   color: var(--color-light);
-  padding: var(--spacing-section) 4rem;
   z-index: 1;
 }
 
@@ -389,6 +497,8 @@ footer {
     RESPONSIVE/ACCESSIBILITY DESIGN
    ------------------------------------------------------------ */
 
+
+   
 :focus {
   outline-color:  rgba(255, 0, 0, 0.6);
   outline-style: solid;
@@ -416,4 +526,3 @@ footer {
     display: none !important;
   }
 }
-
