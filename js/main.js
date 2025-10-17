@@ -28,8 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
   });
 
-  // ✅ Cursor Glow (smooth follow)
-  const cursor = document.querySelector(".cursor"); // <— THIS LINE IS THE FIX
+  // Cursor Glow (smooth follow)
+  const cursor = document.querySelector(".cursor"); 
 
   let x = 0, y = 0;
   let targetX = 0, targetY = 0;

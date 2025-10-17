@@ -410,3 +410,10 @@ footer {
     padding: 3rem 1rem;
   }
 }
+
+@media (hover: none) and (pointer: coarse) {
+  .cursor {
+    display: none !important;
+  }
+}
+
