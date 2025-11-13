@@ -1,16 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Portfolio Project</title>
-
-  <link rel="icon" type="image/png" href="images/icon1.png">
+  <title>Rusira Alwis | Portfolio</title>
+  <link rel="icon" type="image/png" href="images/icon1.png" />
 
   <!-- CSS -->
-  <link rel="stylesheet" href="css/master.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="css/master.css" />
 
   <!-- Cursor Glow Style -->
   <style>
@@ -30,25 +28,18 @@
 </head>
 
 <body>
-  <div class="cursor"></div>
+  <div class="cursor" aria-hidden="true"></div>
 
-  <!-- Navigation -->
+  <!-- =========================
+     NAVIGATION
+  ========================== -->
   <header>
   <nav class="navbar">
     <div class="container nav-container">
-      <h2 class="logo" tabindex="0">Portfolio</h2>
-
-      <!-- Hamburger button -->
-      <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        ☰
-      </button>
-
-      <!-- Collapsible main menu -->
+      <h1 class="logo" tabindex="0">Portfolio</h1>
       <ul class="nav-menu">
         <li><a href="#about" tabindex="0">About</a></li>
-
         <li><a href="#projects" tabindex="0">Projects</a></li>
-
         <li><a href="#contact" tabindex="0">Contact</a></li>
       </ul>
     </div>
@@ -56,128 +47,120 @@
 </header>
 
 
-
-  <!-- Hero Section -->
-  <section class="hero">
+  <!-- =========================
+       HERO SECTION
+  ========================== -->
+  <section class="hero" id="home">
     <div class="container">
-      <img src="images/profile.png" tabindex="0" alt="Profile photo" class="profile-pic">
-      <h1 tabindex="0">Rusira Alwis</h1>
-      <p tabindex="0">Student | Engineer | Developer</p>
-      <button id="learnMoreBtn">Learn More</button>
+      <img src="images/profile.png" alt="Profile photo of Rusira Alwis" class="profile-pic" tabindex="0" />
+      <h2 tabindex="0">Rusira Alwis</h2>
+      <p tabindex="0">Student • Engineer • Developer</p>
+      <button id="learnMoreBtn" aria-label="Learn more about me">Learn More</button>
     </div>
   </section>
 
-  <!-- About Section -->
+  <!-- =========================
+       ABOUT SECTION
+  ========================== -->
   <section id="about">
     <div class="container">
       <h2 tabindex="0">About Me</h2>
       <p tabindex="0">
-        I’m a passionate aspiring engineer with a hunger for producing fun and inspired projects.<br>
-        I enjoy bringing ideas to life and showcasing them on my website in the future.
-        This website is constructed to support most potential users (WCAG 2.2) as I believe it is essential to practice inclusivity and ethics.<br>
-        <br> [the website is under construction | royalty free placeholder images are currently used]
+        I’m a passionate aspiring control systems engineer (interested in avionics) with a drive to create engaging and meaningful projects.
+        My goal is to combine creativity, functionality, and accessibility to deliver inclusive experiences.
+        This website is designed with WCAG 2.2 accessibility principles in mind.<br /><br />
+        <em>[Website under construction — placeholder images currently used]</em>
       </p>
     </div>
   </section>
 
-  <!-- Projects Section -->
+  <!-- =========================
+       PROJECTS SECTION
+  ========================== -->
   <section id="projects">
     <div class="container">
-      <h2 tabindex="0" aria-label="Projects title, presents 4 projects below">Projects</h2>
+      <h2 tabindex="0" aria-label="Projects Section">Projects</h2>
       <div class="project-grid">
-        <div class="project-card">
-          <img src="images/project1.png" tabindex="0" alt="Project 1 aerial drone image">
+
+        <article class="project-card">
+          <img src="images/project1.png" alt="Aerial drone project image" tabindex="0" />
           <h3 tabindex="0">Aerial Drone</h3>
-          <p tabindex="0">
-            Team - Lead Engineer, Project Manager<br>
-            [in progress]
-          </p>
-        </div>
-        <div class="project-card">
-          <img src="images/project2.png" tabindex="0" alt="Project 2 electric manned vehicle image">
+          <p tabindex="0">Team Lead Engineer, Project Manager<br />[In progress]</p>
+        </article>
+
+        <article class="project-card">
+          <img src="images/project2.png" alt="Electric manned vehicle project image" tabindex="0" />
           <h3 tabindex="0">Electric Manned Vehicle</h3>
-          <p tabindex="0">
-            Team - Systems and Electronics Engineer<br>
-            [in progress]
-          </p>
-        </div>
-        <div class="project-card">
-        <img src="images/project3.png" tabindex="0" alt="Project 3 monash university logo image">
-        <h3 tabindex="0">Coursework Project</h3>
-        <p tabindex="0">Associated with Monash University</p>
-        </div>
-        <div class="project-card">
-        <img src="images/project4.png" tabindex="0" alt="Project 3 robot image">
-        <h3 tabindex="0">5DOF Robotic Arm</h3>
-        <p tabindex="0">Individual<br>
-        [planned]
-        </p>
-        </div>
+          <p tabindex="0">Systems & Electronics Engineer<br />[In progress]</p>
+        </article>
+
+        <article class="project-card">
+          <img src="images/project3.png" alt="Monash University coursework project logo" tabindex="0" />
+          <h3 tabindex="0">Coursework Project</h3>
+          <p tabindex="0">Associated with Monash University</p>
+        </article>
+
+        <article class="project-card">
+          <img src="images/project4.png" alt="5DOF Robotic Arm concept image" tabindex="0" />
+          <h3 tabindex="0">5DOF Robotic Arm</h3>
+          <p tabindex="0">Individual Project<br />[Planned]</p>
+        </article>
+
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- =========================
+       CONTACT SECTION
+  ========================== -->
   <section id="contact">
     <div class="container">
-      <h2 tabindex="0" aria-label="Contact Me section with fillable name, email, message, and send (website end) features">Contact Me</h2>
-      <form id="contact-form">
-        <input type="text" id="name" name="from_name" placeholder="Your Name" required>
-        <input type="email" id="email" name="reply_to" placeholder="Your Email" required>
+      <h2 tabindex="0">Contact Me</h2>
+      <form id="contact-form" aria-label="Contact form">
+        <input type="text" id="name" name="from_name" placeholder="Your Name" required />
+        <input type="email" id="email" name="reply_to" placeholder="Your Email" required />
         <textarea id="message" name="message" rows="5" placeholder="Your Message" required></textarea>
-        <button id="sendBtn" class="magnet">Send</button>
+        <button id="sendBtn" class="magnet" type="submit">Send</button>
       </form>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- =========================
+       FOOTER
+  ========================== -->
   <footer>
     <p>© 2025 Rusira Alwis</p>
   </footer>
 
-  <!-- emailjs -->
+  <!-- =========================
+       SCRIPTS
+  ========================== -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-
-  <!-- Main JS -->
   <script src="js/main.js"></script>
 
   <!-- Cursor Glow Script -->
   <script>
-  const cursor = document.querySelector(".cursor");
+    const cursor = document.querySelector(".cursor");
+    if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      window.addEventListener("mousemove", (e) => {
+        cursor.style.left = e.pageX + "px";
+        cursor.style.top = e.pageY + "px";
+      });
+    } else {
+      cursor.style.display = "none";
+    }
+  </script>
 
-  // Only activate cursor on devices with mouse input
-  if (window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
-    window.addEventListener("mousemove", (e) => {
-      cursor.style.left = e.pageX + "px";
-      cursor.style.top = e.pageY + "px";
+  <!-- Mobile Navigation -->
+  <script>
+    const menuToggle = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector(".nav-menu");
+
+    menuToggle.addEventListener("click", () => {
+      navMenu.classList.toggle("active");
+      const expanded = menuToggle.getAttribute("aria-expanded") === "true";
+      menuToggle.setAttribute("aria-expanded", !expanded);
     });
-  } else {
-    cursor.style.display = "none"; // hide on mobile/touch
-  }
-</script>
-
-<script>
-  const menuToggle = document.querySelector('.menu-toggle');
-  const navLinks = document.querySelector('.nav-links');
-  const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-
-  // Toggle main nav
-  menuToggle.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-    menuToggle.setAttribute('aria-expanded', !expanded);
-  });
-
-  // Toggle dropdown on mobile
-  dropdownToggles.forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-      if (window.innerWidth <= 768) {
-        e.preventDefault();
-        toggle.parentElement.classList.toggle('active');
-      }
-    });
-  });
-</script>
-
+  </script>
 </body>
 </html>

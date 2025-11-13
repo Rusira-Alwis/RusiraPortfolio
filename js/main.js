@@ -1,126 +1,113 @@
-// Simple interactivity
-document.addEventListener('DOMContentLoaded', () => {
-  const learnMoreBtn = document.getElementById('learnMoreBtn');
-  learnMoreBtn.addEventListener('click', () => {
+/* ============================================================
+   MAIN SCRIPT – Portfolio Website
+   Author: Rusira Alwis
+   Purpose: Handles animations, interactions, and EmailJS
+   ============================================================ */
+
+document.addEventListener("DOMContentLoaded", () => {
+  /* ------------------------------------------------------------
+     SCROLL: "Learn More" Button → Scrolls to About Section
+  ------------------------------------------------------------ */
+  const learnMoreBtn = document.getElementById("learnMoreBtn");
+  const aboutSection = document.getElementById("about");
+
+  learnMoreBtn.addEventListener("click", () => {
     window.scrollTo({
-      top: document.getElementById('about').offsetTop,
-      behavior: 'smooth'
+      top: aboutSection.offsetTop,
+      behavior: "smooth",
     });
   });
 
-  // ✅ Initialize EmailJS with your Public Key
-  (function() {
-    emailjs.init("Slj0gRG0YhBNd01wh"); // Example: "Yy4FfABCDE12345"
+  /* ------------------------------------------------------------
+     EMAILJS: Initialize & Handle Contact Form Submission
+  ------------------------------------------------------------ */
+  (function () {
+    emailjs.init("Slj0gRG0YhBNd01wh"); // Replace with your own EmailJS public key
   })();
 
-  // ✅ Handle the form submission
-  document.getElementById("contact-form").addEventListener("submit", function(event) {
-    event.preventDefault(); // Stop normal form submission
+  const contactForm = document.getElementById("contact-form");
+  contactForm.addEventListener("submit", (event) => {
+    event.preventDefault();
 
-    emailjs.sendForm("service_fjbfru9", "template_suqelos", this)
+    emailjs
+      .sendForm("service_fjbfru9", "template_suqelos", contactForm)
       .then(() => {
         alert("✅ Message sent successfully!");
-        this.reset(); // clear the form
+        contactForm.reset();
       })
       .catch((error) => {
-        console.error("❌ Failed to send message:", error);
-        alert("❌ Message failed. Check console for details.");
+        console.error("❌ Message failed:", error);
+        alert("❌ Failed to send message. Check console for details.");
       });
   });
 
-  // Cursor Glow (smooth follow)
-  const cursor = document.querySelector(".cursor"); 
-
-  let x = 0, y = 0;
-  let targetX = 0, targetY = 0;
+  /* ------------------------------------------------------------
+     CURSOR GLOW: Smooth Follow Animation
+  ------------------------------------------------------------ */
+  const cursor = document.querySelector(".cursor");
+  let x = 0,
+    y = 0,
+    targetX = 0,
+    targetY = 0;
 
   window.addEventListener("mousemove", (e) => {
     targetX = e.clientX;
     targetY = e.clientY;
   });
 
-  function animate() {
+  const animateCursor = () => {
     x += (targetX - x) * 0.2;
     y += (targetY - y) * 0.2;
-    cursor.style.left = x + "px";
-    cursor.style.top = y + "px";
-    requestAnimationFrame(animate);
-  }
-  animate();
-});
+    cursor.style.left = `${x}px`;
+    cursor.style.top = `${y}px`;
+    requestAnimationFrame(animateCursor);
+  };
+  animateCursor();
 
-// ✨ Sparkles stay above the button even while scrolling
-const learnMoreBtn = document.getElementById("learnMoreBtn");
+  /* ------------------------------------------------------------
+     MAGNETIC EFFECT: Subtle Pull in Contact Section
+  ------------------------------------------------------------ */
+  const magnets = document.querySelectorAll(".magnet");
+  const contactSection = document.getElementById("contact");
+  const strength = 0.025;
 
-learnMoreBtn.addEventListener("mousemove", (e) => {
-  const rect = learnMoreBtn.getBoundingClientRect();
-  const sparkle = document.createElement("div");
-  sparkle.classList.add("sparkle");
+  const handleMagnet = (e, magnet) => {
+    const rect = magnet.getBoundingClientRect();
+    const offsetX = e.clientX - (rect.left + rect.width / 2);
+    const offsetY = e.clientY - (rect.top + rect.height / 2);
+    magnet.style.transform = `translate(${offsetX * strength}px, ${offsetY * strength}px)`;
+  };
 
-  // random color for variation
-  const colors = ["#ffffff", "#a0e9ff", "#ffe6ff", "#b2f5ea"];
-  sparkle.style.background = `radial-gradient(circle, ${
-    colors[Math.floor(Math.random() * colors.length)]
-  }, transparent)`;
+  const resetMagnet = (magnet) => {
+    magnet.style.transform = "translate(0, 0)";
+  };
 
-  // position sparkle relative to button
-  sparkle.style.left = e.clientX - rect.left + "px";
-  sparkle.style.top = e.clientY - rect.top + "px";
-
-  learnMoreBtn.appendChild(sparkle);
-
-  // cleanup after fade
-  setTimeout(() => sparkle.remove(), 800);
-});
-
-
-// 🧲 Magnetic Effect — only in contact/footer
-const magnets = document.querySelectorAll(".magnet");
-const contactSection = document.getElementById("contact");
-
-function handleMagnet(e, magnet) {
-  const rect = magnet.getBoundingClientRect();
-  const strength = 0.025; // smaller = softer pull
-
-  const x = e.clientX - (rect.left + rect.width / 2);
-  const y = e.clientY - (rect.top + rect.height / 2);
-
-  magnet.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
-}
-
-function resetMagnet(magnet) {
-  magnet.style.transform = "translate(0, 0)";
-}
-
-// activate only when inside the contact/footer section
-function activateMagnet(area) {
-  area.addEventListener("mousemove", (e) => {
+  contactSection.addEventListener("mousemove", (e) => {
     magnets.forEach((magnet) => handleMagnet(e, magnet));
   });
-  area.addEventListener("mouseleave", () => {
+
+  contactSection.addEventListener("mouseleave", () => {
     magnets.forEach(resetMagnet);
   });
-}
 
-activateMagnet(contactSection);
+  /* ------------------------------------------------------------
+     SPARKLE EFFECT: Hover Animation on “Learn More” Button
+  ------------------------------------------------------------ */
+  learnMoreBtn.addEventListener("mousemove", (e) => {
+    const rect = learnMoreBtn.getBoundingClientRect();
+    const sparkle = document.createElement("div");
+    sparkle.classList.add("sparkle");
 
-const menuToggle = document.querySelector('.menu-toggle');
-const navMenu = document.querySelector('.nav-menu');
-const dropdownToggle = document.querySelector('.dropdown-toggle');
-const dropdown = document.querySelector('.dropdown');
+    // Randomized sparkle color for subtle variation
+    const colors = ["#ffffff", "#a0e9ff", "#ffe6ff", "#b2f5ea"];
+    sparkle.style.background = `radial-gradient(circle, ${
+      colors[Math.floor(Math.random() * colors.length)]
+    }, transparent)`;
 
-// Toggle main menu
-menuToggle.addEventListener('click', () => {
-  navMenu.classList.toggle('active');
-  const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-  menuToggle.setAttribute('aria-expanded', !expanded);
+    sparkle.style.left = `${e.clientX - rect.left}px`;
+    sparkle.style.top = `${e.clientY - rect.top}px`;
+
+    learnMoreBtn.appendChild(sparkle);
+    setTimeout(() => sparkle.remove(), 800);
+  });
 });
-
-// Toggle projects submenu
-dropdownToggle.addEventListener('click', (e) => {
-  e.preventDefault();
-  dropdown.classList.toggle('active');
-  const expanded = dropdownToggle.getAttribute('aria-expanded') === 'true';
-  dropdownToggle.setAttribute('aria-expanded', !expanded);
-});
-

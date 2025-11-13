@@ -1,5 +1,5 @@
 /* ============================================================
-   PORTFOLIO WEBSITE MASTER STYLESHEET (SKELETON VERSION)
+   PORTFOLIO WEBSITE – MASTER STYLESHEET
    Author: Rusira Alwis
    ============================================================ */
 
@@ -7,22 +7,21 @@
    GLOBAL VARIABLES
    ------------------------------------------------------------ */
 :root {
-  /* color palette */
-  --color-primary: #137ae1;         /* Main accent (bright blue) */
-  --color-secondary: #0166d2;       /* Secondary blue (hover, active) */
-  --color-bg: #0f0f10;              /* Main page background */
-  --color-dark: #1a1b1e;            /* Card or section background */
-  --color-light: #f4f4f4;           /* Text or icon highlights */
-  --color-text: #e0e0e0;            /* Normal readable text */
-  --color-muted: #888;              /* Faint text (captions, small text) */
+  /* Color Palette */
+  --color-primary: #137ae1;         /* Bright accent blue */
+  --color-secondary: #0166d2;       /* Darker blue (hover, active) */
+  --color-bg: #0f0f10;              /* Page background */
+  --color-dark: #1a1b1e;            /* Section/card background */
+  --color-light: #f4f4f4;           /* Headings and highlights */
+  --color-text: #e0e0e0;            /* Body text */
+  --color-muted: #888;              /* Subtle or small text */
 
-  /* Optional gradient background */
+  /* Gradient */
   --gradient-main: linear-gradient(135deg, #0f0f10, #1a1b1e);
-
 
   /* Typography */
   --font-body: 'Georgia', serif;
-  /* --font-heading: 'Poppins', sans-serif; */
+  --font-ui: 'Segoe UI', sans-serif;
 
   /* Layout */
   --spacing-section: 6rem;
@@ -42,233 +41,140 @@ html {
   scroll-behavior: smooth;
 }
 
-/* moving gradient background */
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Animated Gradient Background */
 body::before {
   content: "";
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -2; /* keep behind everything */
+  inset: 0;
+  z-index: -2;
   background: linear-gradient(-45deg, #00122c, #001d3d, #004a8e, #001330);
   background-size: 200% 200%;
   animation: gradientMove 30s ease infinite;
-  opacity: 1; /* subtle and soft */
 }
 
-/* Animated gradient movement */
 @keyframes gradientMove {
   0% { background-position: 0% 10%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 10%; }
 }
 
-
 /* ------------------------------------------------------------
    HEADER & NAVIGATION
    ------------------------------------------------------------ */
 header {
-  background: linear-gradient(to bottom , #00263f, 30%, transparent);
+  background: linear-gradient(to bottom, #00263f 0%, transparent 100%);
+  padding: 1rem 2rem;
 }
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.logo {
-  color: #015ab8;
-  font-weight: bold;
-  font-size: 1.5rem;
-  /* text-transform: uppercase; */
-  /* letter-spacing: 2px; */
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 1rem;
-}
-
-.nav-links a {
-  display: inline-block;
-  background-color: transparent;
-  color: var(--color-primary);
-  border: none;
-  padding: 0.3rem 0.6rem;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: none;
-  transition: background 0.3s, color 0.3s, transform 0.3s;
-}
-
-.nav-links a:hover,
-.nav-links a:focus {
-  background-color: var(--color-secondary);
-  color: var(--color-light);
-  transform: scale(1.05);
-  outline: 2;
-}
-
-/* --- NAVIGATION --- */
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: relative;
-  width: 100%;
-}
-
-/* Hamburger (top right) */
-.menu-toggle {
-  position: absolute;
-  top: 1rem;
-  right: 1.5rem;
-  background: none;
-  border: none;
-  color: var(--color-light);
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 100;
-}
-
-/* Remove bullet points and padding */
-.nav-menu,
-.dropdown-menu {
-  list-style: none;
-  padding: 1;
-  margin: 0;
-}
-
-/* Nav menu base (hidden by default) */
-.nav-menu {
-  position: absolute;
-  top: 5rem;
-  right: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 1rem;
-  opacity: 0;
-  transform: translateY(-10px);
-  pointer-events: none;
-  transition: opacity 0.3s ease, transform 0.3s ease;
-}
-
-/* Visible state */
-.nav-menu.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* Buttons like "Learn More" */
-.nav-menu a,
-.dropdown-toggle {
-  padding: 0.5rem 1rem;
-  color: var(--color-primary);
-  border: transparent;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-  background: transparent;
-  transition: all 0.3s ease;
-  text-align: right;
-}
-
-.nav-menu a:hover,
-.dropdown-toggle:hover {
-  background-color: var(--color-secondary);
-  color: var(--color-light);
-  transform: scale(1.05);
-}
-
-/* Dropdown menu (hidden initially) */
-.dropdown-menu {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: 0.4rem;
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.3s ease;
-}
-
-.dropdown.active .dropdown-menu {
-  max-height: 300px;
-}
-
-
 
 /* ------------------------------------------------------------
-   HERO SECTION (intro, name, tagline, button)
+   ACCESSIBILITY & RESPONSIVE DESIGN
+   ------------------------------------------------------------ */
+:focus {
+  outline: 3px #ff0000;
+  outline-offset: 4px;
+}
+
+/* --- NAV MENU (3 BUTTONS) --- */
+.nav-menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 1rem 0;
+  padding: 0;
+}
+
+.nav-menu li {
+  list-style: none;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--color-light);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-menu a:hover{
+  background: var(--color-primary);
+  color: var(--color-light);
+  transform: translateY(-2px);
+}
+
+/* ------------------------------------------------------------
+   HERO SECTION
    ------------------------------------------------------------ */
 .hero {
   text-align: center;
-  font-family: var(--font-body);
-  padding: 4rem 1rem;
+  padding: 6rem 1rem;
   color: var(--color-light);
-  /* background-image: url('../images/hero-bg.jpg'); */
-  /* background-size: cover;
-     background-position: center; */
+}
+
+.hero .profile-pic {
+  width: 8%;
+  margin-bottom: 1rem;
+  border-radius: 50%;
 }
 
 .hero h1 {
-  font-size: 2.5rem;
+  font-size: 2.6rem;
   margin-top: 1rem;
-  /* font-family: var(--font-heading); */
 }
 
 .hero p {
   font-size: 1.2rem;
-  margin-bottom: 1.5rem;
   color: var(--color-light);
-  /* font-style: italic; */
+  margin-bottom: 1.5rem;
 }
 
 .hero button {
-  background-color: transparent;
-  font-family: 'Segue UI', sans-serif;
+  background: transparent;
   color: var(--color-primary);
-  border: none;
+  font-family: var(--font-ui);
+  border: 2px solid var(--color-primary);
   padding: 0.8rem 1.5rem;
-  border-radius: 4px;
+  border-radius: 6px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s, transform 0.3s;
+  transition: all 0.3s ease;
 }
 
-.hero button:hover,
-.hero button:focus {
-  background-color: var(--color-secondary);
-  font-family: 'Segue UI', sans-serif;
+.hero button:hover {
+  background: var(--color-secondary);
   color: var(--color-light);
-  transform: scale(1.05);
-  outline: 2;
+  transform: translateY(-2px);
 }
 
-/* make button a positioning context */
+/* Sparkle Effect */
 #learnMoreBtn {
   position: relative;
   overflow: visible;
-  z-index: 10;
 }
 
-/* ✨ Sparkle style */
 .sparkle {
   position: absolute;
   width: 2px;
   height: 2px;
-  background: radial-gradient(circle, #74daff, rgba(255,255,255,0));
+  background: radial-gradient(circle, #74daff, transparent);
   border-radius: 50%;
   pointer-events: none;
   animation: sparkleFade 0.6s ease-out forwards;
-  box-shadow: 0 0 1px 1px rgba(130, 247, 255, 0.6);
-  z-index: 999; /* ensure it’s above the button */
+  box-shadow: 0 0 2px 2px rgba(130, 247, 255, 0.6);
+  z-index: 99;
 }
 
 @keyframes sparkleFade {
@@ -276,110 +182,33 @@ header {
   100% { opacity: 0; transform: scale(2); }
 }
 
-
-
-
-/* Profile photo */
-.profile-pic {
-  width: 7.5%;
-  margin-bottom: 1rem;
-  /* box-shadow: 0 0 10px rgba(255,255,255,0.5); */
-}
-
-
 /* ------------------------------------------------------------
-    ABOUT SECTION
+   ABOUT SECTION
    ------------------------------------------------------------ */
 #about {
-  padding: var(--spacing-section) 4rem;
-  font-family: var(--font-body);
-  background: linear-gradient(to bottom, transparent, 50%, var(--color-bg));
-  background-size: 150%;
-  color: var(--color-light);
+  padding: var(--spacing-section) 2rem;
   text-align: center;
+  background: linear-gradient(to bottom, transparent, var(--color-bg));
+  color: var(--color-light);
 }
 
 #about h2 {
   margin-bottom: 1rem;
-  /* font-family: var(--font-heading); */
 }
 
 #about p {
   max-width: 700px;
   margin: auto;
-  /* font-size: 1.1rem; */
-  /* line-height: 1.8; */
 }
-
-#about {
-  position: relative;
-  padding-bottom: 6rem; /* keep your normal spacing */
-  background: linear-gradient(to bottom, transparent, var(--color-bg));
-}
-
-/* Extend the background down a bit to hide the gap */
-#about::after {
-  content: "";
-  position: absolute;
-  bottom: -10px; /* overlap into the next section slightly */
-  left: 0;
-  width: 100%;
-  height: 20px; /* how much extra background you want */
-  background: linear-gradient(to bottom, var(--color-bg), var(--color-bg));
-  z-index: 0;
-}
-
 
 /* ------------------------------------------------------------
-    PROJECTS SECTION (2x2 GRID)
+   PROJECTS SECTION (GRID)
    ------------------------------------------------------------ */
 #projects {
-  position: relative;
-  font-family: 'Georgia', serif;
-  background-color: var(--color-bg);
-  color: var(--color-light);
-  padding: 8rem;
-  clip-path: polygon(
-    0 0,
-    100% 0,
-    100% calc(100% - 30px),
-    95% 100%,
-    90% calc(100% - 30px),
-    85% 100%,
-    80% calc(100% - 30px),
-    75% 100%,
-    70% calc(100% - 30px),
-    65% 100%,
-    60% calc(100% - 30px),
-    55% 100%,
-    50% calc(100% - 30px),
-    45% 100%,
-    40% calc(100% - 30px),
-    35% 100%,
-    30% calc(100% - 30px),
-    25% 100%,
-    20% calc(100% - 30px),
-    15% 100%,
-    10% calc(100% - 30px),
-    5% 100%,
-    0 calc(100% - 30px)
-  );
-}
-
-#projects {
-  position: relative;
-  background-color: var(--color-bg);
-  color: var(--color-light);
-  z-index: 1;
-}
-
-#contact {
-  position: relative;
-  background-color: var(--color-dark);
-  color: var(--color-light);
+  background: linear-gradient(to bottom, var(--color-bg), var(--color-dark));
   padding: var(--spacing-section) 2rem;
-  margin-top: -40px; /* overlaps under projects’ zigzag */
-  z-index: 0;
+  color: var(--color-light);
+  clip-path: none;
 }
 
 
@@ -390,51 +219,43 @@ header {
 
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(2,1fr); /* always 2 columns */
-  gap: 1.5rem;
-  justify-items: center; /* center items horizontally */
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  max-width: var(--max-width);
+  margin: auto;
 }
 
 .project-card {
   background: var(--color-dark);
-  color: var(--color-text);
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s, box-shadow 0.3s;
-  padding: 1rem;
+  padding: 1.5rem;
   text-align: center;
-
-  width: 100%;        /* card fills the grid cell */
-  max-width: 600px;   /* ensures all cards are same width */
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-card:hover {
   transform: scale(1.03);
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
 }
 
 .project-card img {
-  width: 20%;
+  width: 25%;
   margin-bottom: 0.5rem;
-  object-fit: cover; 
 }
 
 .project-card h3 {
   color: var(--color-primary);
-  font-size: 1.2rem;
   margin-top: 0.5rem;
 }
-
-
 
 /* ------------------------------------------------------------
    CONTACT SECTION
    ------------------------------------------------------------ */
 #contact {
-  padding: var(--spacing-section) 1rem;
-  background-color: var(--color-dark);
-  background-size: 200% 200%;
+  background: linear-gradient(to bottom, var(--color-dark), #000);
   color: var(--color-light);
+  padding: var(--spacing-section) 2rem;
   text-align: center;
 }
 
@@ -453,76 +274,33 @@ form {
 form input,
 form textarea {
   padding: 0.8rem;
-  background-color: #cccccc;
-  border: 1px solid #000000;
+  background-color: #ccc;
+  border: 1px solid #000;
   border-radius: 4px;
-  /* background-color: #fafafa; */
 }
 
 form button {
-  background-color: var(--color-secondary);
+  background: var(--color-secondary);
   color: var(--color-light);
   border: none;
   padding: 0.8rem;
   border-radius: 4px;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: bold;
+  transition: all 0.3s ease;
 }
 
 form button:hover {
-  background-color: var(--color-primary);
+  background: var(--color-primary);
 }
-
-.magnet {
-  display: inline-block;
-  transition: transform 0.2s ease-out;
-  will-change: transform;
-}
-
-
 
 /* ------------------------------------------------------------
-    FOOTER
+   FOOTER
    ------------------------------------------------------------ */
 footer {
-  background-color: #000000;
+  background: #000;
   color: var(--color-muted);
   text-align: center;
   padding: 1rem 0;
   font-size: 0.9rem;
-  /* border-top: 3px solid var(--color-primary); */
-}
-
-/* ------------------------------------------------------------
-    RESPONSIVE/ACCESSIBILITY DESIGN
-   ------------------------------------------------------------ */
-
-
-   
-:focus {
-  outline-color:  rgba(255, 0, 0, 0.6);
-  outline-style: solid;
-  outline-width: 3px;
-  outline-offset: 2px;
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    flex-direction: column;
-  }
-
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero {
-    padding: 3rem 1rem;
-  }
-}
-
-@media (hover: none) and (pointer: coarse) {
-  .cursor {
-    display: none !important;
-  }
 }
