@@ -66,6 +66,13 @@ body::before {
   100% { background-position: 0% 10%; }
 }
 
+:focus {
+  outline: 3px solid #ff0000;
+  outline-offset: 4px;
+}
+
+
+
 /* ------------------------------------------------------------
    HEADER & NAVIGATION
    ------------------------------------------------------------ */
@@ -77,10 +84,6 @@ header {
 /* ------------------------------------------------------------
    ACCESSIBILITY & RESPONSIVE DESIGN
    ------------------------------------------------------------ */
-:focus {
-  outline: 3px #ff0000;
-  outline-offset: 4px;
-}
 
 /* --- NAV MENU (3 BUTTONS) --- */
 .nav-menu {
